@@ -1,0 +1,29 @@
+【傘の破損判定モデルの学習プログラムの解説】
+
+■ 使用ライブラリとフレームワーク
+- TensorFlow / Keras を使用したCNN（畳み込みニューラルネットワーク）モデル
+- 画像の読み込みや前処理には ImageDataGenerator を利用
+
+■ データセット構成
+- ディレクトリ: data/processed/
+    - 正常な傘の画像: data/processed/normal/
+    - 破損した傘の画像: data/processed/damaged/
+- 画像は 512×512
+- 正規化: 画素値を 0〜1 にスケーリング
+
+■ モデル構造
+- 入力: 512×512 RGB画像
+- Conv2D + MaxPooling 3層
+- Flatten → Dense層で分類処理
+- 出力: 破損（1）または正常（0）の確率を出力
+
+■ 学習設定
+- 損失関数: binary_crossentropy（二値分類用）
+- 最適化アルゴリズム: Adam
+- 評価指標: accuracy（正答率）
+- バッチサイズ: 8
+- エポック数: 10
+
+■ 保存先
+- 学習済みモデルは「models/umbrella_damage_cnn.h5」に保存
+
